@@ -1,0 +1,31 @@
+{
+  "name": "grunt-get-last-pinned",
+  "version": "0.1.0",
+  "description": "Get the last pinned build number from a teamcity build",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andyroyle/grunt-get-last-pinned.git"
+  },
+  "keywords": [
+    "grunt"
+  ],
+  "author": "ryantomlinson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andyroyle/grunt-get-last-pinned/issues"
+  },
+  "homepage": "https://github.com/andyroyle/grunt-get-last-pinned",
+  "peerDependencies": {
+    "grunt": "~0.4.2"
+  },
+  "dependencies": {
+    "request": "~2.33.0"
+  },
+  "devDependencies": {
+    "grunt-cli": "~0.1.13"
+  }
+}
