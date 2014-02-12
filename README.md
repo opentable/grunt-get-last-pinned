@@ -1,5 +1,5 @@
-grunt-get-last-pinned
-=====================
+# grunt-get-last-pinned [![Build Status](https://travis-ci.org/andyroyle/grunt-get-last-pinned.png?branch=master)](https://travis-ci.org/andyroyle/grunt-get-last-pinned) [![NPM version](https://badge.fury.io/js/grunt-get-last-pinned.png)](http://badge.fury.io/js/grunt-get-last-pinned) ![Dependencies](https://david-dm.org/andyroyle/grunt-get-last-pinned.png)
+
 
 Get the last-pinned build number from a teamcity build
 
