@@ -1,35 +1,21 @@
 'use strict';
 
 var request = require('request'),
-    fs = require('fs'),
-    outputFile = 'buildInfo.json';
+    fs = require('fs');
 
 module.exports = function(grunt){
 
-    var saveBuildInfo = function(buildInfo, done){
+    var setBuildNumber = function(buildInfo, done){
         if (buildInfo.build.length > 0){
-            grunt.verbose.writeln('Build number is ' + buildInfo.build[0].number);
-
-            fs.writeFile(outputFile, JSON.stringify(buildInfo), function(err) {
-                if(err) {
-                    grunt.fail.fatal(err);
-                } else {
-                    grunt.log.debug("JSON saved to " + outputFile);
-                    done();
-                }
-            });
+            var buildNumber = buildInfo.build[0].number;
+            grunt.log.debug('Build number is ' + buildNumber);
+            grunt.option("buildNumber", buildNumber);
+            done();
         }
         else{
             grunt.fail.fatal('There are no pinned builds in the response');
         }
     };
-
-    grunt.registerMultiTask('set-buildnumber', 'Reads the last pinned build number from file and populates property', function(){
-        var buildInfo = JSON.parse(fs.readFileSync(outputFile));
-        var buildNumber = buildInfo.build[0].number;
-        grunt.log.debug('Build number in local file is ' + buildNumber);
-        grunt.option("buildNumber", buildNumber);
-    });
 
     grunt.registerMultiTask('get-last-pinned-buildnumber', 'Uses the TeamCity API to ask for a specific projects last pinned build number', function(){
         var options = this.options({});
@@ -55,7 +41,7 @@ module.exports = function(grunt){
             }
             if (response.statusCode === 200){
                 grunt.verbose.debug('The response from TeamCity request: ' + body);
-                saveBuildInfo(JSON.parse(body), done);
+                setBuildNumber(JSON.parse(body), done);
             }
         });
     });

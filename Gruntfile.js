@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
-    grunt.registerTask('test', ['jshint', 'start-server', 'get-last-pinned-buildnumber:test', 'mochaTest']);
+    grunt.registerTask('test', ['jshint', 'start-server', 'get-last-pinned-buildnumber:test', 'write-buildNumber', 'mochaTest']);
     grunt.registerTask('default', ['test']);
     grunt.loadTasks('tasks');
     grunt.loadTasks('tests/tasks');

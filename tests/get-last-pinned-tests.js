@@ -14,9 +14,9 @@ describe('building the url', function(){
     });
 });
 
-describe('saving the buildInfo', function(){
-    var expected = JSON.parse(fs.readFileSync('tests/expected/buildInfo.json'));
-    var actual = JSON.parse(fs.readFileSync('buildInfo.json'));
+describe('setting the buildnumber', function(){
+    var expected = fs.readFileSync('tests/expected/buildNumber.txt');
+    var actual = fs.readFileSync('tests/actual/buildNumber.txt');
 
     it('should save the json to a file', function(){
         actual.should.eql(expected);
