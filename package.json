@@ -1,6 +1,6 @@
 {
   "name": "grunt-get-last-pinned",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get the last pinned build number from a teamcity build and saves it to a file",
   "main": "Gruntfile.js",
   "scripts": {

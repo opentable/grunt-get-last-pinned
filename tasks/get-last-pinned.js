@@ -8,7 +8,7 @@ module.exports = function(grunt){
     var setBuildNumber = function(buildInfo, done){
         if (buildInfo.build.length > 0){
             var buildNumber = buildInfo.build[0].number;
-            grunt.log.debug('Build number is ' + buildNumber);
+            grunt.verbose.writeln('Build number is ' + buildNumber);
             grunt.option("buildNumber", buildNumber);
             done();
         }
@@ -20,14 +20,13 @@ module.exports = function(grunt){
     grunt.registerMultiTask('get-last-pinned-buildnumber', 'Uses the TeamCity API to ask for a specific projects last pinned build number', function(){
         var options = this.options({});
         grunt.verbose.writeflags(options);
-        grunt.verbose.writeln('Getting last pinned build...');
 
         var done = this.async();
         var url = options.url;
         var buildType = options.buildTypeId;
 
         url = url + '/guestAuth/app/rest/builds/?locator=buildType:' + buildType + ',status:SUCCESS,pinned:true,count:1';
-        grunt.log.debug('Making request to teamcity ' + url);
+        grunt.verbose.writeln('Making request to teamcity ' + url);
 
         request({
             url: url,
@@ -39,9 +38,13 @@ module.exports = function(grunt){
             if (error){
                 grunt.fail.fatal(error);
             }
+
             if (response.statusCode === 200){
-                grunt.verbose.debug('The response from TeamCity request: ' + body);
+                grunt.verbose.writeln('The response from TeamCity request: ' + body);
                 setBuildNumber(JSON.parse(body), done);
+            }
+	    else {
+                grunt.fail.fatal('The response from teamcity was: ' + body);
             }
         });
     });
