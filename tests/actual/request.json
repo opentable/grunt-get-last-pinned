@@ -1,1 +1,0 @@
-{"headers":{"accept":"application/json","host":"127.0.0.1:8888","connection":"keep-alive"},"url":"/guestAuth/app/rest/builds/?locator=buildType:123,status:SUCCESS,pinned:true,count:1"}

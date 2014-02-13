@@ -43,7 +43,7 @@ module.exports = function(grunt){
                 grunt.verbose.writeln('The response from TeamCity request: ' + body);
                 setBuildNumber(JSON.parse(body), done);
             }
-	    else {
+            else {
                 grunt.fail.fatal('The response from teamcity was: ' + body);
             }
         });
