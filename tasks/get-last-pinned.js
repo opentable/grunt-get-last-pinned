@@ -8,7 +8,7 @@ module.exports = function(grunt){
     var setBuildNumber = function(buildInfo, done){
         if (buildInfo.build.length > 0){
             var buildNumber = buildInfo.build[0].number;
-            grunt.verbose.writeln('Build number is ' + buildNumber);
+            grunt.verbose.writeln('##teamcity[buildNumber \''+ buildNumber +'\']');
             grunt.option("buildNumber", buildNumber);
             done();
         }
