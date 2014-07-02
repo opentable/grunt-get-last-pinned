@@ -6,15 +6,15 @@ var request = require('request'),
 module.exports = function(grunt){
 
     var setBuildNumber = function(buildInfo, done){
-        if (buildInfo.build.length > 0){
-            var buildNumber = buildInfo.build[0].number;
-            grunt.verbose.writeln('##teamcity[buildNumber \''+ buildNumber +'\']');
-            grunt.option("buildNumber", buildNumber);
-            done();
+        var buildNumber = buildInfo.number;
+        grunt.verbose.writeln('##teamcity[buildNumber \''+ buildNumber +'\']');
+        grunt.option("buildNumber", buildNumber);
+        if(buildInfo.lastChanges.change.length > 0){
+            var buildLastChangeVersion = buildInfo.lastChanges.change[0].version;
+            grunt.verbose.writeln('##teamcity[buildLastChangeVersion \''+ buildLastChangeVersion + '\']');
+            grunt.option("buildLastChangeVersion", buildLastChangeVersion);
         }
-        else{
-            grunt.fail.fatal('There are no pinned builds in the response');
-        }
+        done();
     };
 
     grunt.registerMultiTask('get-last-pinned-buildnumber', 'Uses the TeamCity API to ask for a specific projects last pinned build number', function(){
@@ -25,7 +25,7 @@ module.exports = function(grunt){
         var url = options.url;
         var buildType = options.buildTypeId;
 
-        url = url + '/guestAuth/app/rest/builds/?locator=buildType:' + buildType + ',status:SUCCESS,pinned:true,count:1';
+        url = url + '/guestAuth/app/rest/buildTypes/id:' + buildType + '/builds/status:SUCCESS,pinned:true';
         grunt.verbose.writeln('Making request to teamcity ' + url);
 
         request({
