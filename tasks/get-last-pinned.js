@@ -11,7 +11,7 @@ module.exports = function(grunt){
         grunt.option("buildNumber", buildNumber);
         if(buildInfo.lastChanges.change.length > 0){
             var buildLastChangeVersion = buildInfo.lastChanges.change[0].version;
-            grunt.verbose.writeln('##teamcity[buildLastChangeVersion \''+ buildLastChangeVersion + '\']');
+            grunt.verbose.writeln('##teamcity[setparameter name=\'buildLastChangeVersion\' value=\'' + buildLastChangeVersion + '\']');
             grunt.option("buildLastChangeVersion", buildLastChangeVersion);
         }
         done();
