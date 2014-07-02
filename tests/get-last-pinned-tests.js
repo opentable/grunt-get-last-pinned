@@ -22,3 +22,12 @@ describe('setting the buildnumber', function(){
         actual.should.eql(expected);
     });
 });
+
+describe('setting the buildlastchangeversion', function(){
+    var expected = fs.readFileSync('tests/expected/buildLastChangeVersion.txt');
+    var actual = fs.readFileSync('tests/actual/buildLastChangeVersion.txt');
+
+    it('should save the json to a file', function(){
+        actual.should.eql(expected);
+    });
+});
